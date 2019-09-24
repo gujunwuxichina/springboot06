@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>高并发出错</h1>
+</div>
+<script src="../../static/js/jquery-1.12.4.js"></script>
+<script>
+    for(let i=0;i<200;i++){
+        $.post('./purchaseProduct',{
+            uId:1,
+            pId:1,
+            quantity:1
+        },function (data) {
+
+        });
+    }
+</script>
+</body>
+</html>

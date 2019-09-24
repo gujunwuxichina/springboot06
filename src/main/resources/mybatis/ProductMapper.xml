@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gujun.springboot06.dao.ProductMapper">
+
+    <select id="getProduct" parameterType="int" resultType="product">
+        select
+            pid, pname, stock, price, version, note
+        from
+            product_tab
+        where
+            pId=#{pId}
+    </select>
+
+    <select id="positive" parameterType="int" resultType="product">
+        select
+            pid, pname, stock, price, version, note
+        from
+            product_tab
+        where
+            pId=#{pId} for update
+    </select>
+
+    <update id="decreaseProduct">
+        update
+            product_tab
+        set
+            stock=stock-#{quantity}
+        where
+            pId=#{pId}
+    </update>
+
+</mapper>
