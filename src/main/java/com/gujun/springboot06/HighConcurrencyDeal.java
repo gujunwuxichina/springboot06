@@ -31,7 +31,9 @@ public class HighConcurrencyDeal {
 
     /*
         redis处理：
-
+        redis机制也能够克服超发现象，但是因为其命令方式运算能力比较薄弱，所有一般采用redis lua去代替原有的命令方式；
+        redis lua在redis的执行中具有原子性，当它被执行时不会被其它客户端发送过来的命令打断；
+        HHH
      */
 
 }
