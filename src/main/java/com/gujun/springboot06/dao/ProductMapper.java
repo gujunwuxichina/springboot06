@@ -9,8 +9,10 @@ public interface ProductMapper {
 
     Product getProduct(Integer pId);
 
-    Product positive(Integer pId);
+    Product negative(Integer pId);
 
     int decreaseProduct(@Param("pId") Integer pId,@Param("quantity") int quantity);
+
+    int decreaseProductPositiveVersion(@Param("pId") Integer pId,@Param("quantity") int quantity,@Param("version") int version);
 
 }

@@ -4,6 +4,12 @@ public interface PurchaseService {
 
     boolean purchase(Integer uId,Integer pId,int quantity);
 
-    boolean positive(Integer uId,Integer pId,int quantity);
+    boolean negative(Integer uId,Integer pId,int quantity);
+
+    boolean positiveVersion(Integer uId,Integer pId,int quantity);
+
+    boolean positiveVersionLimitTime(Integer uId,Integer pId,int quantity);
+
+    boolean positiveVersionLimitCount(Integer uId,Integer pId,int quantity);
 
 }

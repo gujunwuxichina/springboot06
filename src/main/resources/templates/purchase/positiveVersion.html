@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h1>乐观锁版本号克服超发</h1>
+    <button id="btn1">版本号无可重入</button><br/>
+    <button id="btn2">版本号限制时间可重入</button><br/>
+    <button id="btn3">版本号限制次数可重入</button>
+    <div id="result"></div>
+</div>
+<script src="../../static/js/jquery-1.12.4.js"></script>
+<script>
+    let result=document.getElementById('result');
+    document.getElementById('btn1').addEventListener('click',function (event) {
+        for(let i=0;i<200;i++){
+            $.post('./positiveVersion',{
+                uId:1,
+                pId:1,
+                quantity:1
+            },function (data) {
+                result.innerText=data.result;
+            });
+        }
+    },false);
+    document.getElementById('btn2').addEventListener('click',function (event) {
+        for(let i=0;i<200;i++){
+            $.post('./positiveVersionLimitTime',{
+                uId:1,
+                pId:1,
+                quantity:1
+            },function (data) {
+                result.innerText=data.result;
+            });
+        }
+    },false);
+    document.getElementById('btn3').addEventListener('click',function (event) {
+        for(let i=0;i<200;i++){
+            $.post('./positiveVersionLimitCount',{
+                uId:1,
+                pId:1,
+                quantity:1
+            },function (data) {
+                result.innerText=data.result;
+            });
+        }
+    },false);
+</script>
+</body>
+</html>

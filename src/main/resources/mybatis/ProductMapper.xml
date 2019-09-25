@@ -11,7 +11,8 @@
             pId=#{pId}
     </select>
 
-    <select id="positive" parameterType="int" resultType="product">
+    <!--悲观锁克服超发问题-->
+    <select id="negative" parameterType="int" resultType="product">
         select
             pid, pname, stock, price, version, note
         from
@@ -27,6 +28,19 @@
             stock=stock-#{quantity}
         where
             pId=#{pId}
+    </update>
+
+    <!--乐观锁，版本号来减库存-->
+    <update id="decreaseProductPositiveVersion">
+        update
+            product_tab
+        set
+            stock=stock-#{quantity},
+            version=version+1
+        where
+            pId=#{pId}
+        and
+            version=#{version}
     </update>
 
 </mapper>

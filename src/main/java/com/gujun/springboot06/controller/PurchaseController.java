@@ -32,10 +32,17 @@ public class PurchaseController {
         return mv;
     }
 
-    @GetMapping("/goPositive")  //乐观锁
-    public ModelAndView goPositive(){
+    @GetMapping("/goNegative")  //乐观锁
+    public ModelAndView goNegative(){
         ModelAndView mv=new ModelAndView();
-        mv.setViewName("purchase/positive");
+        mv.setViewName("purchase/negative");
+        return mv;
+    }
+
+    @GetMapping("/goPositiveVersion")
+    public ModelAndView goPositiveVersion(){
+        ModelAndView mv=new ModelAndView();
+        mv.setViewName("purchase/positiveVersion");
         return mv;
     }
 
@@ -48,14 +55,40 @@ public class PurchaseController {
         return jsonObject;
     }
 
-    @PostMapping("/positive")
-    public JSONObject positive(Integer uId,Integer pId,int quantity){
+    @PostMapping("/negative")
+    public JSONObject negative(Integer uId,Integer pId,int quantity){
         JSONObject jsonObject=new JSONObject();
-        boolean result=purchaseService.positive(uId,pId,quantity);
+        boolean result=purchaseService.negative(uId,pId,quantity);
         String resultMsg=result?"抢购成功":"抢购失败";
         jsonObject.put("result",resultMsg);
         return jsonObject;
     }
 
+    @PostMapping("/positiveVersion")
+    public JSONObject positiveVersion(Integer uId,Integer pId,int quantity){
+        JSONObject jsonObject=new JSONObject();
+        boolean result=purchaseService.positiveVersion(uId,pId,quantity);
+        String resultMsg=result?"抢购成功":"抢购失败";
+        jsonObject.put("result",resultMsg);
+        return jsonObject;
+    }
+
+    @PostMapping("/positiveVersionLimitTime")
+    public JSONObject positiveVersionLimitTime(Integer uId,Integer pId,int quantity){
+        JSONObject jsonObject=new JSONObject();
+        boolean result=purchaseService.positiveVersionLimitTime(uId,pId,quantity);
+        String resultMsg=result?"抢购成功":"抢购失败";
+        jsonObject.put("result",resultMsg);
+        return jsonObject;
+    }
+
+    @PostMapping("/positiveVersionLimitCount")
+    public JSONObject positiveVersionLimitCount(Integer uId,Integer pId,int quantity){
+        JSONObject jsonObject=new JSONObject();
+        boolean result=purchaseService.positiveVersionLimitCount(uId,pId,quantity);
+        String resultMsg=result?"抢购成功":"抢购失败";
+        jsonObject.put("result",resultMsg);
+        return jsonObject;
+    }
 
 }

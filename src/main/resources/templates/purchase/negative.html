@@ -5,12 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-<h1>乐观锁克服超发</h1>
+<h1>悲观锁克服超发</h1>
 <div id="result"></div>
 <script src="../../static/js/jquery-1.12.4.js"></script>
 <script>
     for(let i=0;i<200;i++){
-        $.post('./positive',{
+        $.post('./negative',{
             uId:1,
             pId:1,
             quantity:1
